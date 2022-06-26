@@ -1,12 +1,14 @@
+import base64
+
 from flask import *
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
-from tqdm import tqdm
+from matplotlib.figure import Figure
+from io import BytesIO
 
 app = Flask(__name__)
-df = pd.read_csv('finalized-data.csv')
+df = pd.read_csv('finalized-data.csv', index_col=False)
 
 
 @app.route("/")
@@ -23,14 +25,13 @@ def fillData():
     year = 2018  # make use of this shit later
     month = int(lst[1])
     date = int(lst[2])
-    # dur = request.form["duration"]
-    dur = 100
+    dur = int(request.form["dur"])
 
     # back end programming here
 
+    """
     df['velocity'] = np.sqrt(df['ugs'] ** 2 + df['vgs'] ** 2)
-
-    """year_vgs = df.groupby(['year', 'month', 'day', 'lat', 'lon'])['vgs'].mean()
+    year_vgs = df.groupby(['year', 'month', 'day', 'lat', 'lon'])['vgs'].mean()
     year_ugs = df.groupby(['year', 'lat', 'lon'])['ugs'].mean()
     year_vel = df.groupby(['year', 'lat', 'lon'])['velocity'].mean()
 
@@ -81,9 +82,9 @@ def fillData():
                    label='Velocity < Q1', scale=5)
         plt.legend()"""
 
-
     def roundPartial(value):
         return round((value - 0.125) / 0.25) * 0.25 + 0.125
+
     def move(lat, lon, vgs, ugs):
         return lat + vgs, lon + ugs
 
@@ -99,7 +100,8 @@ def fillData():
             'vgs').values[0]
         ugs1 = df[df.year == year][df.month == month][df.day == day][df.lat == latitude][df.lon == longitude].get(
             'ugs').values[0]
-
+        print(vgs1)
+        print(ugs1)
         day1 = day
         vgs = vgs1
         ugs = ugs1
@@ -117,22 +119,21 @@ def fillData():
                 day1 = 1
                 month = month + 1
 
-            """
             if (month > 12):
                 month = 1
-                year = year + 1
-            """
+                #  year = year + 1
 
-            vgs = \
-            df[df.year == year][df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get('vgs').values[0]
-            ugs = \
-            df[df.year == year][df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get('ugs').values[0]
+            vgs = df[df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get(
+                    'vgs').values[0]
+            ugs = df[df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get(
+                    'ugs').values[0]
             final = [latitude, longitude]
+            print(final)
             tracking.append([latitude, longitude])
 
         return initialCoor, final, tracking
 
-    def plotTracking(trackingList):
+    """def plotTracking(trackingList):
 
         # The data are given as list of lists (2d list)
         data = np.array(trackingList)
@@ -152,20 +153,31 @@ def fillData():
         x, y = data.T
 
         # plot our list in X,Y coordinates
-        plt.show()
 
-        plt.savefig("results/test.svg")
+        plt.savefig("results/test.svg")"""
 
-    def finalFunction(lon, lat, year, month, day, days):
-        initialCoor, final, tracking = movefordays(year, day, month, lat, lon, days)
-
-        print("Initial Position: " + initialCoor)
-        print("Initial Final: " + final)
-        print("After " + days + " days")
-
-        plotTracking(tracking)
-
-    finalFunction(lon, lat, year, month, date, dur)
+    trackingList = movefordays(2018, date, month, lat, lon, dur)
+    # The data are given as list of lists (2d list)
+    data = np.array(trackingList[2])
+    # Taking transpose
+    # plot our list in X,Y coordinates
+    px = 1 / plt.rcParams['figure.dpi']
+    fig = Figure(figsize=[370*px, 450*px])
+    ax = fig.subplots()
+    x = range(300)
+    y = range(300)
+    x, y = data.T
+    ax.set_ybound(0, 100)
+    ax.plot(trackingList[0][1],trackingList[0][0], linewidth=10, color="black")
+    ax.plot(trackingList[1][1], trackingList[1][0], linewidth=10, color="black")
+    ax.plot(y, x, linewidth=5, color='firebrick')
+    ax.set_ybound(34, 49)
+    ax.set_xbound(128, 140)
+    buf = BytesIO()
+    fig.savefig(buf,format="png")
+    data1 = base64.b64encode(buf.getbuffer()).decode("ascii")
+    print(data1)
+    return render_template("result.html", value=data1)
 
 
 # for local testing on editing machine
