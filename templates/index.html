@@ -93,6 +93,17 @@
     </div>
 
 
-<script src="{{url_for('static',filename='scripts/app.js')}}"></script>
+<script>
+  const img = document.getElementById("map")
+img.onclick = (e) => {
+  const x = e.pageX - e.target.offsetLeft;
+  const y = e.pageY - e.target.offsetTop;
+  console.log(x, y);
+
+    document.getElementById("lat").value = x;
+    document.getElementById("long").value = y;
+  }
+
+  </script>
 </body>
 
