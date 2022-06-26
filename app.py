@@ -80,30 +80,10 @@ def fillData():
 
         return initialCoor, final, tracking
 
-    """def plotTracking(trackingList):
-
-        # The data are given as list of lists (2d list)
-        data = np.array(trackingList)
-        # Taking transpose
-
-        # plot our list in X,Y coordinates
-        img = plt.imread("Capture.jpg")
-        px = 1 / plt.rcParams['figure.dpi']
-        fig, ax = plt.subplots(figsize=(370 * px, 450 * px))
-        x = range(300)
-        x, y = data.T
-        ax.set_ybound(0, 100)
-        ax.plot(y, x, linewidth=5, color='firebrick')
-        ax.set_ybound(34, 49)
-        ax.set_xbound(128, 140)
-
-        x, y = data.T
-
-        # plot our list in X,Y coordinates
-
-        plt.savefig("results/test.svg")"""
+    # dont touch what's below this!!!
 
     trackingList = movefordays(2018, date, month, lat, lon, dur)
+
     # The data are given as list of lists (2d list)
     data = np.array(trackingList[2])
     # Taking transpose
