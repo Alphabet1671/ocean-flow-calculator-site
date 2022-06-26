@@ -99,9 +99,7 @@ def fillData():
     y = range(300)
     x, y = data.T
     ax.set_ybound(0, 100)
-    ax.plot(trackingList[0][1],trackingList[0][0], linewidth=10, color="black")
-    ax.plot(trackingList[1][1], trackingList[1][0], linewidth=10, color="black")
-    ax.plot(y, x, linewidth=5, color='firebrick')
+    ax.plot(y, x, linewidth=3, color='firebrick')
     ax.set_ybound(34, 49)
     ax.set_xbound(128, 140)
     buf = BytesIO()
