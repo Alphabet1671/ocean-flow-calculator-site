@@ -13,7 +13,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:sticky;top:0;height:70px;padding-left:10px;">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="{{url_for('static',filename='images/gogglers.svg')}}" alt="" height="50px" class="d-inline-block align-text-top">
+            <img src="{{url_for('static',filename='images/gogglers.svg')}}" alt="" height="50px" class="d-inline-block align-text-top gogglers">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="../templates/index.html">Home</a>
+                    <a class="nav-link" href="../">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contact-us">Contact</a>
@@ -41,15 +41,16 @@
   </div>
 
   <div id="result-section">
+    <div id="inforesult-text">
+      <div style="font-size:1.2rem;"><b>Path Results For:</b></div>  <br>
+  
+    <div style="color:rgb(161, 161, 161);">Initial position: {{ origin }} <br> Starting Date: {{ date_str }}<br> Duration: {{dur}} {{ dur }} <br> Ending position: {{ final }} </div>  <!--so where ever u want the initial position, use {{ origin }} etc. -->
+  
+  
+    </div>
     <div>
   <img src="data:image/png;base64,{{ value }}" id="resultpic">
 </div>
-  <div id="inforesult-text">
-
-    <label>Initial position: {{ origin }}, Ending position: {{ final }}</label>  <!--so where ever u want the initial position, use {{ origin }} etc. -->
-
-
-  </div>
 </div>
 
 <script>
