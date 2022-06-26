@@ -29,13 +29,42 @@ body{
 
 .unit-header{
     text-align:center;
-    background: linear-gradient(90deg, rgb(229, 247, 255) 0%, rgb(156, 184, 240) 98%);
+    background: linear-gradient(90deg, #e5f7ff 0%, #9cb8f0 98%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
     font-size:6rem;
+    height:200px;
+    margin-top:50px;
+    font-family:'Changa', 'sans-serif';
+
 }
 
 form {
     text-align:center;
+
 }
 
+form input{
+    border-radius:5px;
+    border:#9cb8f0 solid 2px;
+    color:rgb(215, 215, 215);
+    /* font-family:'Mukta', 'sans-serif'; */
+    width:150px;
+    height:35px;
+    font-size:.96rem;
+    padding-left:10px;
+}
+
+#submit{
+    color:rgb(23, 47, 93);
+}
+
+#contactbar{
+    height:300px;
+    background:#bdc1c9;
+    margin-top:400px;
+}
+
+#gogglers{
+    margin-right:-25px;
+}
