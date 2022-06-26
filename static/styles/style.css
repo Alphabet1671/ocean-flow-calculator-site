@@ -164,3 +164,29 @@ form input{
     border-radius:5px;
     border:var(--main-color) solid 5px;
 }
+
+#resultpic{
+    width:370px;
+    height:450px;
+    border:#636363 solid 2px;
+    
+}
+
+#result-section{
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top:30px;
+    margin-left:55px;
+    
+}
+
+#inforesult-text{
+    border:#636363 solid 2px;
+    width:450px;
+    height:450px;
+    background:#f8f9fa;
+    padding-left:15px;
+    padding-top:15px;
+    
+}
