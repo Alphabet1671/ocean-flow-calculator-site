@@ -124,7 +124,7 @@ def fillData():
     fig.savefig(buf,format="png")
     data1 = base64.b64encode(buf.getbuffer()).decode("ascii")
     print(data1)
-    return render_template("result.html", value=data1, origin=trackingList[0], final=trackingList[1])
+    return render_template("result.html", value=data1, origin=trackingList[0], final=trackingList[1], dateIn=date_str, dur=dur)
 
 
 # for local testing on editing machine
