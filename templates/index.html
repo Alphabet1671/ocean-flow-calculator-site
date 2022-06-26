@@ -20,7 +20,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:sticky;top:0;height:70px;padding-left:10px;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="../images/gogglers.svg" alt="" height="50px" class="d-inline-block align-text-top">
+                <img src="{{url_for('static',filename='images/gogglers.svg')}}" alt="" height="50px" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -70,7 +70,7 @@
 
                 <div id="right-unit-container">   
                 <div>
-                <img id="map" src="../images/maplol.jpg">
+                <img id="map" src="{{url_for('static',filename='images/maplol.jpg')}}">
             </div> 
             </div>
 
