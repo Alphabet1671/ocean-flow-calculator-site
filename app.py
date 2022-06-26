@@ -12,16 +12,18 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/fill-form/", methods=["POST", "GET"])
+@app.route("/fill-form", methods=["POST"])
 def fillData():
     lat = request.form["lat"]
     lon = request.form["long"]
-    date_str = request.form["start"]
+    date_str = request.form["trip-start"]
     lst = date_str.split("-")
     year = lst[0] # make use of this shit later
     month = lst[1]
     date = lst[2]
-    dur = request.form["duration"]
+    # dur = request.form["duration"]
+    dur = 100
+
     #back end programming here
 
 
