@@ -27,7 +27,7 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
+                <a class="nav-link" href="#about-us">About Us</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
@@ -37,26 +37,42 @@
           </div>
         </div>
       </nav>
-    <div class="unit-container">
-            <div class="unit-header"> 
-                Sea Tracker
-            </div>
-            <div class="unit-subtext" style="min-width:450px;"> <b>What is SeaTracker?</b><br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore veniam eligendi consequuntur repudiandae tempore. Deserunt voluptatum ipsa explicabo sit soluta, debitis excepturi ipsum. Reiciendis magnam perferendis minus mollitia, non ipsa. </div>
-            
-            <form action="/fill-form/", method="post" id="inputForm">
-                <label for="lat">Latitude:</label><br>
-                <input type="text" id="lat" value="Enter a number.."><br>
-                <label for="long">Longitude:</label><br>
-                <input type="text" id="long" value="Enter a number.."><br>
-                <label for="date">Date Item Lost:</label><br>
-                <input type="date" id="start" name="trip-start"
-                > <br> <br>
-                <input id="submit" type="submit" value="Submit">
-                
-            </form>
-            
-        </div>
+      <div></div>
+      <div class="unit-header"> 
+        Sea Tracker
+    </div>
+    <div id="full-container">
 
+        <div id="left-unit-container">
+
+
+                <div>
+                <div class="unit-subtext" style="min-width:450px;"> <b>What is SeaTracker?</b><br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore veniam eligendi consequuntur repudiandae tempore. Deserunt voluptatum ipsa explicabo sit soluta, debitis excepturi ipsum. Reiciendis magnam perferendis minus mollitia, non ipsa. </div>
+                
+                <form action="/fill-form/", method="post" id="inputForm">
+                    <label for="lat">Latitude:</label><br>
+                    <input type="text" id="lat" value="Enter a number.."><br>
+                    <label for="long">Longitude:</label><br>
+                    <input type="text" id="long" value="Enter a number.."><br>
+                    <label for="date">Start Date:</label><br>
+                    <input type="date" id="start" name="trip-start"
+                    > <br> <br>
+                    <input id="submit" type="submit" value="Submit">
+                    
+                </form>
+            </div>
+            </div>
+        
+
+                <div id="right-unit-container">       
+                <img id="map" src="./maplol.jpg">
+            </div>
+                
+           
+
+        </div>
+        <!-- <iframe id="lol" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7157202.561083638!2d120.16262662827485!3d28.846962539519605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34589c6ea58f4e61%3A0xb703d43857ef6c4!2sEast%20China%20Sea!5e0!3m2!1sen!2sca!4v1656208653583!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+        
         <!-- <div id="contactbar"></div>
         </div> -->
         
@@ -80,5 +96,6 @@
     
     
     <img id="gogglers" src="./gogglers.svg">
+    <script src="./app.js"></script>
 </body>
 

@@ -18,11 +18,11 @@ body{
 }
 
 
-.unit-container{
+#left-unit-container{
 
     display:flex;
     flex-direction:column;
-    justify-content:flex-start;
+   
 
 
 }
@@ -94,13 +94,12 @@ form input{
         flex-direction: column;
     }
 
+    #full-container{
+        flex-direction: column;
+    }
+
 }
 
-#lol{
-    display:inline;
-    margin-top:-375px;
-    margin-left:800px;
-}
 
 #about-us{
     /* border: green solid 3px; */
@@ -142,4 +141,23 @@ form input{
     color:rgb(212, 208, 188);
     font-family:'Changa','Sans-serif';
     margin-bottom:10px;
+}
+
+#right-unit-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    /* border:red 3px solid; */
+    width:50%
+}
+
+#full-container{
+    display:flex;
+}
+
+#map{
+    height:450px;
+    margin-top:20px;
+    margin-left:50px;
+
 }
