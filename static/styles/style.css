@@ -87,20 +87,59 @@ form input{
 
 @media screen and (max-width: 800px) {
     .unit-header{
-        min-width:400px;
-        /* tbc */
+        /* min-width:400px; */
+        font-size:5rem;
+    }
+    .pfprow{
+        flex-direction: column;
     }
 
 }
 
 #lol{
     display:inline;
-    margin-top:-370px;
+    margin-top:-375px;
     margin-left:800px;
 }
 
 #about-us{
-    border: green solid 3px;
-    height:100%;
-    width:300px;
+    /* border: green solid 3px; */
+    background:#edeee7;
+    margin-top:60px;
+
+}
+
+.pfp-pic{
+    height:200px;
+    width:200px;
+    margin-left:25px;
+    margin-top:25px;
+    border:3px rgb(255, 255, 255) solid;
+    border-radius:5px;
+    transition:transform .5s;
+}
+
+.pfp-pic:hover{
+    transform:scale(1.08);
+
+}
+
+.pfprow{
+    display:flex;
+    padding-bottom:20px;
+}
+
+.pfp-sub-text{
+    margin-top:30px;
+    margin-left:30px;
+    width:450px;
+}
+
+#au-main{
+    font-size:4rem;
+    margin-left:40px;
+    padding-top:15px;
+    color:rgb(212, 208, 188);
+    font-family:'Changa','Sans-serif';
+    margin-bottom:10px;
 }
