@@ -12,7 +12,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/fill-form", methods=["POST"])
+@app.route("/fill-form/", methods=["POST"])
 def fillData():
     lat = request.form["lat"]
     lon = request.form["long"]
