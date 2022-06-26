@@ -102,6 +102,12 @@ img.onclick = (e) => {
 
     document.getElementById("lat").value = x;
     document.getElementById("long").value = y;
+  
+   var myform = document.getElementById('inputForm');
+    myform.onsubmit = function(){
+    document.getElementById('submit').value = 'Submitting...';
+    myform.submit();
+};
   }
 
   </script>
