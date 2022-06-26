@@ -4,7 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from tqdm import tqdm
+
 app = Flask(__name__)
+df = pd.read_csv('finalized-data.csv')
 
 
 @app.route("/")
@@ -14,24 +16,21 @@ def index():
 
 @app.route("/fill-form/", methods=["POST"])
 def fillData():
-    lat = request.form["lat"]
-    lon = request.form["long"]
+    lat = round((float(request.form["lat"]) - 0.125) / 0.25) * 0.25 + 0.125
+    lon = round((float(request.form["long"]) - 0.125) / 0.25) * 0.25 + 0.125
     date_str = request.form["trip-start"]
     lst = date_str.split("-")
-    year = lst[0] # make use of this shit later
-    month = lst[1]
-    date = lst[2]
+    year = 2018  # make use of this shit later
+    month = int(lst[1])
+    date = int(lst[2])
     # dur = request.form["duration"]
     dur = 100
 
-    #back end programming here
-
-
-    df = pd.read_csv('translated avg.csv')
+    # back end programming here
 
     df['velocity'] = np.sqrt(df['ugs'] ** 2 + df['vgs'] ** 2)
 
-    year_vgs = df.groupby(['year', 'month', 'day', 'lat', 'lon'])['vgs'].mean()
+    """year_vgs = df.groupby(['year', 'month', 'day', 'lat', 'lon'])['vgs'].mean()
     year_ugs = df.groupby(['year', 'lat', 'lon'])['ugs'].mean()
     year_vel = df.groupby(['year', 'lat', 'lon'])['velocity'].mean()
 
@@ -80,29 +79,26 @@ def fillData():
                    label='Q1 < Velocity < Q2', scale=7)
         plt.quiver(lon.iloc[q_25_index], lat.iloc[q_25_index], ugs[q_25_index], vgs[q_25_index], color='blue',
                    label='Velocity < Q1', scale=5)
-        plt.legend()
+        plt.legend()"""
+
 
     def roundPartial(value):
         return round((value - 0.125) / 0.25) * 0.25 + 0.125
-
-    def getVGS(year, month, day, lat, lon):
-        return df[df.year == year][df.month == month][df.day == day][df.lat == lat][df.lon == lon].get('vgs').values[0]
-
-    def getUGS(year, month, day, lat, lon):
-        return df[df.year == year][df.month == month][df.day == day][df.lat == lat][df.lon == lon].get('ugs').values[0]
-
     def move(lat, lon, vgs, ugs):
         return lat + vgs, lon + ugs
 
     def movefordays(year, day, month, lat, lon, daysmoving):
+
         initialCoor = [lat, lon]
         iniLat = roundPartial(lat)
         iniLon = roundPartial(lon)
         latitude = iniLat
         longitude = iniLon
-
-        vgs1 = getVGS(year, month, day, latitude, longitude)
-        ugs1 = getUGS(year, month, day, latitude, longitude)
+        # test w/ 43.375,136.625
+        vgs1 = df[df.year == year][df.month == month][df.day == day][df.lat == latitude][df.lon == longitude].get(
+            'vgs').values[0]
+        ugs1 = df[df.year == year][df.month == month][df.day == day][df.lat == latitude][df.lon == longitude].get(
+            'ugs').values[0]
 
         day1 = day
         vgs = vgs1
@@ -121,20 +117,22 @@ def fillData():
                 day1 = 1
                 month = month + 1
 
+            """
             if (month > 12):
                 month = 1
                 year = year + 1
+            """
 
-            vgs = getVGS(year, month, day1, lati, longi)
-            ugs = getUGS(year, month, day1, lati, longi)
+            vgs = \
+            df[df.year == year][df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get('vgs').values[0]
+            ugs = \
+            df[df.year == year][df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get('ugs').values[0]
             final = [latitude, longitude]
             tracking.append([latitude, longitude])
 
         return initialCoor, final, tracking
 
     def plotTracking(trackingList):
-        import numpy as np
-        import matplotlib.pyplot as plt
 
         # The data are given as list of lists (2d list)
         data = np.array(trackingList)
@@ -158,22 +156,19 @@ def fillData():
 
         plt.savefig("results/test.svg")
 
-
     def finalFunction(lon, lat, year, month, day, days):
-      initialCoor, final, tracking = movefordays(year, day, month, lat, lon, days)
+        initialCoor, final, tracking = movefordays(year, day, month, lat, lon, days)
 
-      print("Initial Position: " + initialCoor)
-      print("Initial Final: " + final)
-      print("After " + days + " days")
+        print("Initial Position: " + initialCoor)
+        print("Initial Final: " + final)
+        print("After " + days + " days")
 
-      plotTracking(tracking)
+        plotTracking(tracking)
 
-    finalFunction(lon, lat, 2018, month, date, dur)
+    finalFunction(lon, lat, year, month, date, dur)
+
 
 # for local testing on editing machine
 
 if __name__ == "__main__":
     app.run(port=2328, host="0.0.0.0", debug=True)
-    
-
-
