@@ -22,65 +22,12 @@ def fillData():
     lon = round((float(request.form["long"]) - 0.125) / 0.25) * 0.25 + 0.125
     date_str = request.form["trip-start"]
     lst = date_str.split("-")
-    year = 2018  # make use of this shit later
+    year = int(lst[0])  # make use of this shit later
     month = int(lst[1])
     date = int(lst[2])
     dur = int(request.form["dur"])
 
     # back end programming here
-
-    """
-    df['velocity'] = np.sqrt(df['ugs'] ** 2 + df['vgs'] ** 2)
-    year_vgs = df.groupby(['year', 'month', 'day', 'lat', 'lon'])['vgs'].mean()
-    year_ugs = df.groupby(['year', 'lat', 'lon'])['ugs'].mean()
-    year_vel = df.groupby(['year', 'lat', 'lon'])['velocity'].mean()
-
-    def Plot_Quiver(year):
-        year_len = len(df[(df['year'] == year) & (df['month'] == 1) & (df['day'] == 1)])
-        for i in range(len(year_vgs.index)):
-            if (year_vgs.index[i] == (year, 34.125, 127.625)):
-                vgs = year_vgs[year_vgs.index[i:i + year_len]].values
-                ugs = year_ugs[year_ugs.index[i:i + year_len]].values
-                vel = year_vel[year_vel.index[i:i + year_len]].values
-
-        vel_q_25 = (np.median(vel) + vel.min()) / 2
-        vel_q_50 = np.median(vel)
-        vel_q_75 = (np.median(vel) + vel.max()) / 2
-
-        q_25_index = []
-        for i in range(len((vel < vel_q_25))):
-            if (vel < vel_q_25)[i]:
-                q_25_index.append(i)
-
-        q_50_index = []
-        for i in range(len(((vel < vel_q_50) & (vel > vel_q_25)))):
-            if ((vel < vel_q_50) & (vel > vel_q_25))[i]:
-                q_50_index.append(i)
-
-        q_75_index = []
-        for i in range(len(((vel < vel_q_75) & (vel > vel_q_50)))):
-            if ((vel < vel_q_75) & (vel > vel_q_50))[i]:
-                q_75_index.append(i)
-
-        q_75_index_over = []
-        for i in range(len((vel < vel_q_75))):
-            if (vel > vel_q_75)[i]:
-                q_75_index_over.append(i)
-
-        lat = df['lat'][i:i + year_len]
-        lon = df['lon'][i:i + year_len]
-
-        plt.figure(figsize=(10, 10))
-
-        plt.quiver(lon.iloc[q_75_index_over], lat.iloc[q_75_index_over], ugs[q_75_index_over], vgs[q_75_index_over],
-                   color='red', label='Velocity > Q3', scale=10, width=0.005)
-        plt.quiver(lon.iloc[q_75_index], lat.iloc[q_75_index], ugs[q_75_index], vgs[q_75_index], color='orange',
-                   label='Q2 < Velocity < Q3', scale=10)
-        plt.quiver(lon.iloc[q_50_index], lat.iloc[q_50_index], ugs[q_50_index], vgs[q_50_index], color='yellow',
-                   label='Q1 < Velocity < Q2', scale=7)
-        plt.quiver(lon.iloc[q_25_index], lat.iloc[q_25_index], ugs[q_25_index], vgs[q_25_index], color='blue',
-                   label='Velocity < Q1', scale=5)
-        plt.legend()"""
 
     def roundPartial(value):
         return round((value - 0.125) / 0.25) * 0.25 + 0.125
@@ -123,9 +70,9 @@ def fillData():
                 month = 1
                 #  year = year + 1
 
-            vgs = df[df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get(
+            vgs = df[df.year == year][df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get(
                     'vgs').values[0]
-            ugs = df[df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get(
+            ugs = df[df.year == year][df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get(
                     'ugs').values[0]
             final = [latitude, longitude]
             print(final)
@@ -156,7 +103,7 @@ def fillData():
 
         plt.savefig("results/test.svg")"""
 
-    trackingList = movefordays(2018, date, month, lat, lon, dur)
+    trackingList = movefordays(year, date, month, lat, lon, dur)
     # The data are given as list of lists (2d list)
     data = np.array(trackingList[2])
     # Taking transpose
@@ -177,7 +124,7 @@ def fillData():
     fig.savefig(buf,format="png")
     data1 = base64.b64encode(buf.getbuffer()).decode("ascii")
     print(data1)
-    return render_template("result.html", value=data1)
+    return render_template("result.html", value=data1, origin=trackingList[0], final=trackingList[1])
 
 
 # for local testing on editing machine
