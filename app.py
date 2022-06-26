@@ -69,11 +69,15 @@ def fillData():
             if (month > 12):
                 month = 1
                 #  year = year + 1
-
-            vgs = df[df.year == year][df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get(
+                
+                
+            try:
+               vgs = df[df.year == year][df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get(
                     'vgs').values[0]
-            ugs = df[df.year == year][df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get(
+               ugs = df[df.year == year][df.month == month][df.day == day1][df.lat == lati][df.lon == longi].get(
                     'ugs').values[0]
+            except:
+                print('Out of bounds')
             final = [latitude, longitude]
             print(final)
             tracking.append([latitude, longitude])
