@@ -8,7 +8,7 @@ from matplotlib.figure import Figure
 from io import BytesIO
 
 app = Flask(__name__)
-df = pd.read_csv('finalized-data.csv', index_col=False)
+df = pd.read_csv('finalized-data1.csv', index_col=False)
 
 
 @app.route("/")
@@ -103,7 +103,7 @@ def fillData():
 
         plt.savefig("results/test.svg")"""
 
-    trackingList = movefordays(year, date, month, lat, lon, dur)
+    trackingList = movefordays(2018, date, month, lat, lon, dur)
     # The data are given as list of lists (2d list)
     data = np.array(trackingList[2])
     # Taking transpose
