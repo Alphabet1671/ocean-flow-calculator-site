@@ -63,7 +63,7 @@ form {
 form input{
     border-radius:5px;
     border:var(--main-color) solid 2px;
-    color:rgb(215, 215, 215);
+    color:rgb(0, 0, 0);
     /* font-family:'Mukta', 'sans-serif'; */
     width:150px;
     height:35px;
@@ -104,40 +104,29 @@ form input{
         flex-direction: column;
     }
 
+
 }
 
 
-#about-us{
+#contact-us{
     /* border: green solid 3px; */
     background:#edeee7;
     margin-top:60px;
+    display:flex;
+    flex-direction: row;
 
 }
 
-.pfp-pic{
-    height:200px;
-    width:200px;
-    margin-left:25px;
-    margin-top:25px;
-    border:3px rgb(255, 255, 255) solid;
-    border-radius:5px;
-    transition:transform .5s;
-}
-
-.pfp-pic:hover{
-    transform:scale(1.08);
-
-}
 
 .pfprow{
-    display:flex;
+
     padding-bottom:20px;
 }
 
 .pfp-sub-text{
-    margin-top:30px;
-    margin-left:30px;
+    margin-left:45px;
     width:450px;
+
 }
 
 #au-main{
@@ -164,8 +153,9 @@ form input{
 
 #map{
     height:450px;
-
-
+}
+#map:hover{
+    cursor:pointer;
 }
 
 #right-unit-container div{
