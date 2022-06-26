@@ -17,7 +17,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:sticky;top:0;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">--</a>
+          <a class="navbar-brand" href=""></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -40,29 +40,24 @@
     <div class="unit-container">
             <div class="unit-header"> 
                 Sea Tracker
+                <img id="gogglers" src="./gogglers.svg">
             </div>
             <div class="unit-subtext" style="min-width:450px;">  </div>
 
-            <form action="/fill-form/", method="post">
+            <form action="/fill-form/", method="post" id="inputForm">
                 <label for="lat">Latitude:</label><br>
                 <input type="text" id="lat" value="Enter a number.."><br>
                 <label for="long">Longitude:</label><br>
                 <input type="text" id="long" value="Enter a number.."><br>
                 <label for="date">Date Item Lost:</label><br>
                 <input type="date" id="start" name="trip-start"
-                value="2018-07-22"
-                min="2018-01-01" max="2018-12-31"> <br> <br>
-                <input type="submit" value="Submit">
+                > <br> <br>
+                <input id="submit" type="submit" value="Submit">
                 
               </form>
 
     </div>
-        <div class="right-container">
-            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7157202.561083637!2d120.16262662827488!3d28.846962539519613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34589c6ea58f4e61%3A0xb703d43857ef6c4!2sEast%20China%20Sea!5e0!3m2!1sen!2sca!4v1656198861279!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-
-            <div>
-            </div>
-        </div>
+      <div id="contactbar"></div>
     </div>
 
 
