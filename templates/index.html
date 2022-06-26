@@ -6,10 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>Sea Tracker</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='styles/style.css')}}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
  
 </head>
 <body>
@@ -54,7 +53,7 @@
                     <input type="text" id="lat" value="Enter a number.."><br>
                     <label for="long">Longitude:</label><br>
                     <input type="text" id="long" value="Enter a number.."><br>
-                    <label for="date">Start Date:</label><br>
+                    <label for="start">Start Date:</label><br>
                     <input type="date" id="start" name="trip-start"
                     > <br> <br>
                     <input id="submit" type="submit" value="Submit">
@@ -96,6 +95,6 @@
     
     
     <img id="gogglers" src="../static/images/gogglers.svg">
-    <script src="./app.js"></script>
+    <script src="{{url_for('static',filename='scripts/app.js')}}"></script>
 </body>
 

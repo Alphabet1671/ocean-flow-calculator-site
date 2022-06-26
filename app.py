@@ -14,13 +14,14 @@ def index():
 
 @app.route("/fill-form/", methods=["POST", "GET"])
 def fillData():
-    lat = request.form["latitude"]
-    lon = request.form["longitude"]
-    month = request.form["month"]
-    date = request.form["date"]
-
-    
-
+    lat = request.form["lat"]
+    lon = request.form["long"]
+    date_str = request.form["start"]
+    lst = date_str.split("-")
+    year = lst[0] # make use of this shit later
+    month = lst[1]
+    date = lst[2]
+    dur = request.form["duration"]
     #back end programming here
 
 
@@ -153,17 +154,22 @@ def fillData():
         # plot our list in X,Y coordinates
         plt.show()
 
-        plt.savefig("test.svg")
+        plt.savefig("results/test.svg")
 
-def finalFunction(lon, lat, year, month, day, days):
-  initialCoor, final, tracking = movefordays(year, day, month, lat, lon, days)
 
-  print("Initial Position: " + initialCoor)
-  print("Initial Final: " + final)
-  print("After " + days + " days")
+    def finalFunction(lon, lat, year, month, day, days):
+      initialCoor, final, tracking = movefordays(year, day, month, lat, lon, days)
 
-  plotTracking(tracking)
-#for local testing on editing machine
+      print("Initial Position: " + initialCoor)
+      print("Initial Final: " + final)
+      print("After " + days + " days")
+
+      plotTracking(tracking)
+
+    finalFunction(lon, lat, 2018, month, date, dur)
+
+# for local testing on editing machine
+
 if __name__ == "__main__":
     app.run(port=2328, host="0.0.0.0", debug=True)
     
