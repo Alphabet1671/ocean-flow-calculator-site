@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+
+
+body{
+    margin:0px;
+    padding:0px;
+    font-family: 'Changa',Arial, sans-serif;
+    text-decoration: none;
+
+}
+:root{
+    --main-color:#dcebf1;
+}
+
+@media screen and (max-width: 1000px) {
+  .unit-container{
+  flex-direction:column;
+  height:900px;
+  }
+
+}
+
+
+
+.unit-header{
+    text-align:center;
+    background: linear-gradient(90deg, rgb(229, 247, 255) 0%, rgb(156, 184, 240) 98%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+    font-size:6rem;
+}
+
+form {
+    text-align:center;
+}
+
