@@ -14,7 +14,7 @@ body{
 
 }
 :root{
-    --main-color:#dcebf1;
+    --main-color:#b4c4cb;
 }
 
 
@@ -29,10 +29,8 @@ body{
 .unit-header{
     padding-left:50px;
     margin-top:20px;
-    /* background: linear-gradient(90deg, #b4c4cb 0%, #7b95cb 98%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent; */
-    color:#b4c4cb;
+
+    
     font-size:8rem;
     height:200px;
     font-family:'Changa', 'sans-serif';
@@ -44,8 +42,13 @@ body{
 
 
 }
+.unit-header div{
+         background: linear-gradient(90deg, #b4c4cb 0%, #7b95cb 98%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; 
+}
 .unit-subtext{
-    max-width:500px;
+    max-width:600px;
     margin-left:60px;
     margin-bottom:20px;
     margin-top:20px;
@@ -59,7 +62,7 @@ form {
 
 form input{
     border-radius:5px;
-    border:#9cb8f0 solid 2px;
+    border:var(--main-color) solid 2px;
     color:rgb(215, 215, 215);
     /* font-family:'Mukta', 'sans-serif'; */
     width:150px;
@@ -76,12 +79,15 @@ form input{
 #submit:hover{
     color:white;
     transform:scale(1.03);
-    background:#9cb8f0;
+    background:var(--main-color);
 }
 
 
 #gogglers{
-    margin-right:-25px;
+    height:75px;
+    margin-left:-330px;
+    margin-top:-100px;
+    transform:rotate(10deg); 
 }
 
 
@@ -138,7 +144,7 @@ form input{
     font-size:4rem;
     margin-left:40px;
     padding-top:15px;
-    color:rgb(212, 208, 188);
+    color:rgb(255, 255, 255);
     font-family:'Changa','Sans-serif';
     margin-bottom:10px;
 }
@@ -148,7 +154,8 @@ form input{
     justify-content:center;
     align-items:center;
     /* border:red 3px solid; */
-    width:50%
+    width:50%;
+    margin-top:20px;
 }
 
 #full-container{
@@ -157,7 +164,11 @@ form input{
 
 #map{
     height:450px;
-    margin-top:20px;
-    margin-left:50px;
 
+
+}
+
+#right-unit-container div{
+    border-radius:5px;
+    border:var(--main-color) solid 5px;
 }
