@@ -155,7 +155,14 @@ def fillData():
 
         plt.savefig("test.svg")
 
+def finalFunction(lon, lat, year, month, day, days):
+  initialCoor, final, tracking = movefordays(year, day, month, lat, lon, days)
 
+  print("Initial Position: " + initialCoor)
+  print("Initial Final: " + final)
+  print("After " + days + " days")
+
+  plotTracking(tracking)
 #for local testing on editing machine
 if __name__ == "__main__":
     app.run(port=2328, host="0.0.0.0", debug=True)
