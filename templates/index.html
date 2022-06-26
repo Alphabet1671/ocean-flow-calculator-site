@@ -99,9 +99,9 @@ img.onclick = (e) => {
   const x = e.pageX - e.target.offsetLeft;
   const y = e.pageY - e.target.offsetTop;
   console.log(x, y);
-
-    document.getElementById("lat").value = x;
-    document.getElementById("long").value = y;
+  
+      document.getElementById("lat").value = x*13/370 + 127;
+      document.getElementById("long").value = 49 - y*15/450;
   
    var myform = document.getElementById('inputForm');
     myform.onsubmit = function(){
