@@ -78,6 +78,8 @@ def fillData():
                     'ugs').values[0]
             except:
                 print('Out of bounds')
+                break
+                
             final = [latitude, longitude]
             print(final)
             tracking.append([latitude, longitude])
